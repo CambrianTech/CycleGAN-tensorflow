@@ -98,10 +98,20 @@ class cyclegan(object):
         self.db_loss_fake_sum = tf.summary.scalar("db_loss_fake", self.db_loss_fake)
         self.da_loss_real_sum = tf.summary.scalar("da_loss_real", self.da_loss_real)
         self.da_loss_fake_sum = tf.summary.scalar("da_loss_fake", self.da_loss_fake)
+        self.real_A_sum = tf.summary.image("real_A", self.real_A)
+        self.real_B_sum = tf.summary.image("real_B", self.real_B)
+        self.fake_A_sum = tf.summary.image("fake_B_to_A", self.fake_A)
+        self.fake_B_sum = tf.summary.image("fake_A_to_B", self.fake_B)
+        self.fake_A_to_A_sum = tf.summary.image("fake_A_to_A", self.fake_A_)
+        self.fake_B_to_B_sum = tf.summary.image("fake_B_to_B", self.fake_B_)
         self.d_sum = tf.summary.merge(
             [self.da_loss_sum, self.da_loss_real_sum, self.da_loss_fake_sum,
              self.db_loss_sum, self.db_loss_real_sum, self.db_loss_fake_sum,
-             self.d_loss_sum]
+             self.d_loss_sum,
+             self.real_A_sum, self.real_B_sum,
+             self.fake_A_sum, self.fake_B_sum,
+             self.fake_A_to_A_sum, self.fake_B_to_B_sum,
+            ]
         )
 
         self.test_A = tf.placeholder(tf.float32,
